@@ -27,6 +27,9 @@ let g:netrw_liststyle=3         " Sets Tree view as default
 let g:netrw_browse_split=2      " When \<CR> a file, do a vsplit first
 let g:netrw_altv=&spr           " Uses the 'splitright' value
 let g:netrw_winsize=80          " Relativa (%) size of new window when 'o' or 'v'
+set wiw=130                     " A 'janela' ativa terá no mínimo esta largura, minimizando a largura das outras
+" Porém, esta linha mantém a janela do NetRW numa largura mínima de 32 caracteres
+au FileType netrw  au BufEnter <buffer> vert resize 32|set winfixwidth
 
 " Remove trailing whitespaces and ^M chars
 autocmd FileType c,cpp,java,go,php,javascript,python,twig,xml,yml autocmd BufWritePre <buffer> call StripTrailingWhitespace()
@@ -78,7 +81,7 @@ set scrolljump=4                " Lines to scroll when cursor leaves screen
 set scrolloff=2                 " Minimum lines to keep above and below cursor
 set foldenable                  " Auto fold code
 set list
-set listchars=tab:›\ ,trail:•,extends:#,nbsp:. " Highlight problematic whitespace
+set listchars=tab:›\ ,trail:•,extends:#,nbsp:· " Highlight problematic whitespace
 
 " Útil quando for colar código "de fora":
 set pastetoggle=<F12>           " pastetoggle (sane indentation on pastes)
@@ -214,5 +217,5 @@ imap [H g0
     filetype plugin indent on   " Automatically detect file types.
 
     " Finish local initializations {
-call InitializeDirectories()
+        call InitializeDirectories()
     " }
